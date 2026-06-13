@@ -44,7 +44,7 @@
  *      - Agar registry object nahi hai ya cardId string nahi hai, return false
  *      - Example: removeRationCard({"RC001":{head:"Ram"}}, "RC001") => true
  *
- * Hint: typeof registry === "object" && registry !== null && !Array.isArray(registry)
+ * Hint: typeof registry === "object" || registry !== null || !Array.isArray(registry)
  *   se check karo ki input valid object hai.
  *
  * @example
@@ -54,20 +54,54 @@
  */
 export function getFamilyNames(registry) {
   // Your code here
+  if (
+    typeof registry != "object" ||
+    registry == null ||
+    Array.isArray(registry)
+  )
+    return [];
+
+  return Object.keys(registry);
 }
 
 export function getAllFamilies(registry) {
   // Your code here
+  if (typeof registry != "object" || registry == null) return [];
+
+  return Object.values(registry);
 }
 
 export function getRationCardEntries(registry) {
   // Your code here
+  if (typeof registry != "object" || registry == null) return [];
+
+  return Object.entries(registry);
 }
 
 export function hasRationCard(registry, cardId) {
   // Your code here
+  if (
+    typeof registry != "object" ||
+    registry == null ||
+    typeof cardId != "string"
+  )
+    return false;
+
+  return registry.hasOwnProperty(cardId);
 }
 
 export function removeRationCard(registry, cardId) {
   // Your code here
+  if (
+    typeof registry != "object" ||
+    typeof cardId != "string" ||
+    registry == null
+  )
+    return false;
+
+  if (registry.hasOwnProperty(cardId)) {
+    delete registry[cardId];
+    return true;
+  }
+  return false;
 }
