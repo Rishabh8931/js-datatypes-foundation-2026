@@ -10,19 +10,9 @@
  *
  * Functions:
  *
- *   1. addToCart(cart, item)
- *      - .push() se item ko cart ke end mein add karo
- *      - Return: new cart length (push returns this automatically)
- *      - Agar cart Array nahi hai (Array.isArray use karo), return -1
- *      - Agar item empty string hai ya string nahi hai, return cart.length without adding
- *      - Example: addToCart(["tamatar", "pyaaz"], "mirchi") => 3
+ 
  *
- *   2. addUrgentItem(cart, item)
- *      - .unshift() se item ko cart ke BEGINNING mein add karo (pehle khareedna hai!)
- *      - Return: updated cart array
- *      - Agar cart not array, return []
- *      - Agar item valid string nahi hai, return cart unchanged
- *      - Example: addUrgentItem(["pyaaz", "mirchi"], "dhaniya") => ["dhaniya", "pyaaz", "mirchi"]
+
  *
  *   3. removeLastItem(cart)
  *      - .pop() se last sabzi remove karo
@@ -48,21 +38,61 @@
  *   removeLastItem(["tamatar", "pyaaz", "mirchi"])   // => "mirchi"
  */
 export function addToCart(cart, item) {
+  /**
+    
+ *      -  1. addToCart(cart, item)
+ *      - .push() se item ko cart ke end mein add karo
+ *      - Return: new cart length (push returns this automatically)
+ *      - Agar cart Array nahi hai (Array.isArray use karo), return -1
+ *      - Agar item empty string hai ya string nahi hai, return cart.length without adding
+ *      - Example: addToCart(["tamatar", "pyaaz"], "mirchi") => 3
+
+   */
   // Your code here
+
+  return Array.isArray(cart) ? cart.push(item) : -1;
+
 }
 
 export function addUrgentItem(cart, item) {
+
+  /**
+ *       2. addUrgentItem(cart, item)
+ *      - .unshift() se item ko cart ke BEGINNING mein add karo (pehle khareedna hai!)
+ *      - Return: updated cart array
+ *      - Agar cart not array, return []
+ *      - Agar item valid string nahi hai, return cart unchanged
+ *      - Example: addUrgentItem(["pyaaz", "mirchi"], "dhaniya") => ["dhaniya", "pyaaz", "mirchi"] 
+   
+   */
   // Your code here
+   
+  if(typeof item != 'string') return "cart unchanged";
+  if(!Array.isArray(cart)) return [];
+
+   cart.unshift(item);
+  return  cart
+
 }
+addUrgentItem([], "mirchi")
 
 export function removeLastItem(cart) {
   // Your code here
+
+  return Array.isArray(cart) ? cart.pop() : undefined;
+
 }
 
 export function isInCart(cart, item) {
   // Your code here
+  return cart.includes(item);
+
 }
 
 export function mergeCarts(cart1, cart2) {
   // Your code here
+  const merged = cart1.concat(cart2);
+
+  console.log(merged)
 }
+
